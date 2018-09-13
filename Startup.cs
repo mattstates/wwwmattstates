@@ -6,7 +6,8 @@ using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-//docker run -it --name mainsitecontainer -d -p 85:80 mattstates
+//docker build -t mattstates:latest .
+//docker run -it --name mainsitecontainer -d -p 5000 mattstates
 namespace mattstates
 {
     public class Startup

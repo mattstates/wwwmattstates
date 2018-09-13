@@ -4,6 +4,6 @@ environment:
   LETSENCRYPT_HOST: mattstates.com
   LETSENCRYPT_EMAIL: mattstates@icloud.com
 expose:
-- "5000"
+-- "5000"
 image: mattstates:latest
 restart: always
