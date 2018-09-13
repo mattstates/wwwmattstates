@@ -1,7 +1,7 @@
 web:
 environment:
   VIRTUAL_HOST: mattstates.com
-  LETSENCRYPT_HOST: mattstates.com
+  LETSENCRYPT_HOST: *.mattstates.com
   LETSENCRYPT_EMAIL: mattstates@icloud.com
   expose:
    - "5000"
