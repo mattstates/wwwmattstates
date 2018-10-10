@@ -11,7 +11,6 @@ export class Layout extends Component {
             <Grid fluid>
                 <Row>
                     <NavMenu />
-
                     {this.props.children}
                 </Row>
             </Grid>
