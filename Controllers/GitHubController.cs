@@ -4,7 +4,6 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System;
-using mattstates.APIModels;
 
 namespace mattstates.Controllers
 {

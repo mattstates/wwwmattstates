@@ -3,12 +3,15 @@ services:
 
   mattstates:
     image: mattstatesdev:latest
+    environment:
+      - USER_SECRETS_ID=65015713-1466-415e-8bdd-aa3c1034d755
     ports:
       - 5000:80
     # networks:
     #   - frontend
     volumes:
       - "./bin/Debug/netcoreapp2.1/publish/mattstates.dll:/app"
+      - $HOME/.microsoft/usersecrets/$USER_SECRETS_ID:/root/.microsoft/usersecrets/$USER_SECRETS_ID
     # command: dotnet mattstatesdev.dll
     # deploy:
     #   replicas: 2

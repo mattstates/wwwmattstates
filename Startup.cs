@@ -1,3 +1,4 @@
+using mattstates.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -31,6 +32,8 @@ namespace mattstates
             });
 
             services.AddHttpClient();
+
+            services.Configure<TwitterConfig>(Configuration.GetSection("TwitterApi"));
 
         }
 
