@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Grid, Row, Col } from 'react-bootstrap';
 import './Home.css';
+import { GitHub } from './GitHub';
+import { Twitter } from './Twitter';
 
 export class Home extends Component {
     displayName = Home.name;
@@ -55,6 +57,13 @@ export class Home extends Component {
                                 things that people will use to make thier lives better in some way.
                             </p>
                         </article>
+
+                    </Row>
+                    <Row>
+                        <GitHub />
+                    </Row>
+                    <Row>
+                    <Twitter />
                     </Row>
                 </Grid>
             </Grid>

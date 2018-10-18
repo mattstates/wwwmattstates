@@ -74,7 +74,7 @@ namespace mattstates.Controllers
 
             var requestParameters = new SortedDictionary<string, string>();
 
-            requestParameters.Add("count", "5");
+            requestParameters.Add("count", "3");
             var response = await GetResponse($"{TWITTER_BASE_PATH}statuses/user_timeline.json?{requestParameters.ToWebString()}", HttpMethod.Get, requestParameters);
 
             return response;
