@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Grid, Row } from 'react-bootstrap';
 import { NavMenu } from './NavMenu';
+import { Footer } from './Footer';
 import './Layout.css';
 
 export class Layout extends Component {
@@ -9,9 +10,10 @@ export class Layout extends Component {
     render() {
         return (
             <Grid fluid>
-                <Row>
+                <Row className='main'>
                     <NavMenu />
-                    {this.props.children}
+                        <div className="content">{this.props.children}</div>
+                    <Footer />
                 </Row>
             </Grid>
         );

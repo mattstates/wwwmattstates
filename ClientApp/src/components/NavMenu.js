@@ -9,11 +9,11 @@ export class NavMenu extends Component {
 
     render() {
         return (
-            <Navbar inverse collapseOnSelect className='technologies'>
+            <Navbar inverse collapseOnSelect className='green-svg'>
                 <Navbar.Header>
-                    <Navbar.Brand>
+                    {/* <Navbar.Brand>
                         <Link to={'/'}>mattstates</Link>
-                    </Navbar.Brand>
+                    </Navbar.Brand> */}
                     <Navbar.Toggle />
                 </Navbar.Header>
                 <Navbar.Collapse>

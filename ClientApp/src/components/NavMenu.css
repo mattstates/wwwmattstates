@@ -14,7 +14,10 @@
 .navbar {
     border-radius: 0;
     border-width: 0;
+    min-height: 4em;
 }
+
+
 
 /* @media (min-width: 768px) {
     // On large screens, convert the nav menu to a vertical sidebar

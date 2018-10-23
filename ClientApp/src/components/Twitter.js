@@ -28,9 +28,8 @@ function loadTwitter(twitterLoaded) {
 }
 
 function createTweet(tweetId, elementId) {
-    console.log(tweetId, elementId);
     window.twttr.widgets.createTweet(tweetId, document.getElementById(elementId), {
-        conversation: 'none',
+        // conversation: 'none',
         dnt: true,
         linkColor: '#55acee'
     });
@@ -48,6 +47,7 @@ export class Twitter extends Component {
     }
 
     componentDidMount() {
+        if (this.state.loaded) return;
         fetch('/api/twitter/tweets')
             .then(response => response.json())
             .then(twitterData => this.setState({ twitterData, loaded: true }))
@@ -58,16 +58,18 @@ export class Twitter extends Component {
         return (
             <Row>
                 <div id="tweets">
+                    {this.state.loaded ? <h4 className='text-center'>Twitter</h4> : ''}
                     {this.state.loaded
-                        ? this.state.twitterData.map(tweet => (
-                              <Col xs={12} sm={6} md={4}>
-                                  <Tweet
-                                      key={tweet.id_str}
-                                      tweetId={tweet.id_str}
-                                      elementId={`tweet${tweet.id_str}`}
-                                  />
-                              </Col>
-                          ))
+                        ? this.state.twitterData.map((tweet, index) => {
+                              return (
+                                  <Col xs={12} sm={6} md={4} key={`tweet${tweet.id_str}${index}`}>
+                                      <Tweet
+                                          tweetId={tweet.id_str}
+                                          elementId={`tweet${tweet.id_str}`}
+                                      />
+                                  </Col>
+                              );
+                          })
                         : '...loading'}
                 </div>
             </Row>

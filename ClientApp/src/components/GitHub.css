@@ -1,0 +1,10 @@
+.githubEvent img {
+    margin-right: 1em;
+    width: 5rem;
+}
+
+@media (max-width: 800px) {
+    .githubEvent img {
+        display: none;
+    }
+}

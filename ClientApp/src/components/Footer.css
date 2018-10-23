@@ -1,0 +1,10 @@
+.footer {
+    background-color: #1e392a;
+    color: lightcyan;
+    flex-shrink: 0;
+    font-size: 1.5em;
+    margin-top: 3em;
+    min-height: 3em;
+    padding-top: 1em;
+}
+
