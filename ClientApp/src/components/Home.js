@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Glyphicon, Grid, Row, Col, Clearfix, Panel, Image } from 'react-bootstrap';
+import { Glyphicon, Grid, Row, Col, Clearfix, Panel, Image, Table } from 'react-bootstrap';
 import './Home.css';
 import { GitHub } from './GitHub';
 import { Twitter } from './Twitter';
@@ -79,6 +79,34 @@ export class Home extends Component {
                     </Row>
                     <Row>
                         <GitHub />
+                    </Row>
+
+                    <Row>
+                    <h2><Glyphicon glyph="minus" /> Connect</h2>
+                    <Table responsive>
+                    <tbody>
+                        <tr>
+                            <td>Email</td>
+                            <td><a href='mailto:mstates@icloud.com'>mstates@icloud.com</a></td>
+                        </tr>
+                        <tr>
+                            <td>LinkedIn</td>
+                            <td><a href='https://www.linkedin.com/in/mattstates/' target='_new'>https://www.linkedin.com/in/mattstates/</a></td>
+                        </tr>
+                        <tr>
+                            <td>GitHub</td>
+                            <td><a href='https://github.com/mattstates' target='_new'>https://github.com/mattstates</a></td>
+                        </tr>
+                        <tr>
+                            <td>Twitter</td>
+                            <td><a href='https://twitter.com/MattStates' target='_new'>https://twitter.com/MattStates</a></td>
+                        </tr>
+                        <tr>
+                            <td>CodePen</td>
+                            <td><a href='https://codepen.io/mattstates/' target='_new'>https://codepen.io/mattstates/</a></td>
+                        </tr>
+                    </tbody>
+                    </Table>
                     </Row>
                 </Grid>
             </Grid>

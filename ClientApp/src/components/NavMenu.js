@@ -8,12 +8,15 @@ export class NavMenu extends Component {
     displayName = NavMenu.name;
 
     render() {
-        return (
-            <Navbar inverse collapseOnSelect className='green-svg'>
-                <Navbar.Header>
-                    {/* <Navbar.Brand>
+        return <Navbar inverse collapseOnSelect className="green-svg" />;
+    }
+}
+
+/* 
+<Navbar.Header>
+                    <Navbar.Brand>
                         <Link to={'/'}>mattstates</Link>
-                    </Navbar.Brand> */}
+                    </Navbar.Brand>
                     <Navbar.Toggle />
                 </Navbar.Header>
                 <Navbar.Collapse>
@@ -28,8 +31,4 @@ export class NavMenu extends Component {
                             <NavItem>Contact</NavItem>
                         </LinkContainer>
                     </Nav>
-                </Navbar.Collapse>
-            </Navbar>
-        );
-    }
-}
+                </Navbar.Collapse>*/

@@ -7,7 +7,7 @@ const pullRequestCount = 3;
 const EVENT_TYPES = {
     push: 'pushevent',
     pullrequest: 'pullrequestevent'
-}
+};
 
 export class GitHub extends Component {
     constructor() {
@@ -23,11 +23,15 @@ export class GitHub extends Component {
         fetch('/api/github/githubevents')
             .then(response => response.json())
             .then(githubData => {
+                const prunedEvents = [
+                    ...githubData
+                        .filter(event => event.type.toLowerCase() === EVENT_TYPES.push)
+                        .splice(0, pushEventCount),
+                    ...githubData
+                        .filter(event => event.type.toLowerCase() === EVENT_TYPES.pullrequest)
+                        .splice(0, pullRequestCount)
+                ].sort((a, b) => b.id - a.id);
 
-                const prunedEvents = [...githubData.filter(event => event.type.toLowerCase() === EVENT_TYPES.push).splice(0, pushEventCount),
-                    ...githubData.filter(event => event.type.toLowerCase() === EVENT_TYPES.pullrequest).splice(0, pullRequestCount)
-                ];
-                
                 this.setState({ githubData: prunedEvents, loaded: true });
             })
             .catch(err => console.error(err.message));
@@ -38,7 +42,7 @@ export class GitHub extends Component {
 
         return (
             <Col xs={12}>
-                <h4 className='text-center'>GitHub</h4>
+                <h4 className="text-center">GitHub</h4>
                 <ListGroup>{this.state.githubData.map(formatGitHubEvent)}</ListGroup>
             </Col>
         );
