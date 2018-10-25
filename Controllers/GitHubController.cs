@@ -23,7 +23,7 @@ namespace mattstates.Controllers
         [HttpGet("[action]")]
         public async Task<IActionResult> GitHubEvents()
         {
-            if(LastRequest.AddMinutes(5) < DateTime.UtcNow && !String.IsNullOrEmpty(CachedGitHubEvents))
+            if(LastRequest.AddMinutes(1) > DateTime.UtcNow && !String.IsNullOrEmpty(CachedGitHubEvents))
             {
                 return Ok(CachedGitHubEvents);
             }

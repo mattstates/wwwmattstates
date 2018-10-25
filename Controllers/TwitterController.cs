@@ -67,7 +67,7 @@ namespace mattstates.Controllers
         public async Task<IActionResult> Tweets()
         {
 
-            if(LastRequest.AddMinutes(5) < DateTime.UtcNow && !String.IsNullOrEmpty(CachedTweets))
+            if(LastRequest.AddMinutes(1) > DateTime.UtcNow && !String.IsNullOrEmpty(CachedTweets))
             {
                 return Ok(CachedTweets);
             }
