@@ -108,6 +108,13 @@ export class Home extends Component {
                     </tbody>
                     </Table>
                     </Row>
+                    <Row>
+                    <h2><Glyphicon glyph="minus" /> About This Page</h2>
+                    <p>This page is still a work in progress. It serves the purpose of telling people a little bit about me, but also serves as a code playground.</p>
+                    <p>While most of my programming knowledge lies in the javascript ecosystem, this site allows me to experiment with C#, Docker, Linux, and eventually a host of other tech that strikes my interest.</p>
+                    <a href='https://github.com/mattstates/wwwmattstates' target='_new'>https://github.com/mattstates/wwwmattstates</a>
+                    <p>Thanks for visiting.</p>
+                    </Row>
                 </Grid>
             </Grid>
         );
