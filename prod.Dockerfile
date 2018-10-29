@@ -32,6 +32,8 @@ RUN curl -SL "https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-lin
     && ln -s /usr/local/bin/node /usr/local/bin/nodejs
 
 EXPOSE 80:80
+ENV USER_SECRETS_ID=65015713-1466-415e-8bdd-aa3c1034d755
+VOLUME [ "$HOME/.microsoft/usersecrets/$USER_SECRETS_ID:/root/.microsoft/usersecrets/$USER_SECRETS_ID" ]
 
 COPY --from=build-env /app/out .
 ENTRYPOINT ["dotnet", "mattstates.dll"]

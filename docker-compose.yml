@@ -1,8 +1,14 @@
 version: "3"
 services:
 
+  # dotnetsdk:
+  #   image: microsoft/dotnet:2.1-sdk
+  # dotnetruntime:
+  #   image: microsoft/dotnet:2.1-aspnetcore-runtime
   mattstates:
-    image: mattstatesdev:latest
+    stdin_open: true
+    tty: true
+    image: mattstates:latest
     environment:
       - USER_SECRETS_ID=65015713-1466-415e-8bdd-aa3c1034d755
     ports:
@@ -12,7 +18,8 @@ services:
     volumes:
       - "./bin/Debug/netcoreapp2.1/publish/mattstates.dll:/app"
       - $HOME/.microsoft/usersecrets/$USER_SECRETS_ID:/root/.microsoft/usersecrets/$USER_SECRETS_ID
-    # command: dotnet mattstatesdev.dll
+
+    # command: dotnet mattstates.dll
     # deploy:
     #   replicas: 2
     #   update_config:
