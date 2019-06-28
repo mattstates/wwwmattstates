@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 
 //docker build -t mattstates:latest .
 //docker run -it --name mainsitecontainer -d -p 5000 mattstates
@@ -35,6 +36,13 @@ namespace mattstates
             services.AddHttpClient();
 
             services.Configure<TwitterConfig>(Configuration.GetSection("TwitterApi"));
+
+            Console.WriteLine("---------------------------TWITTER ACCESS TOKEN----------");
+            Console.WriteLine(Configuration.GetSection("TwitterApi:AccessToken").Value);
+            Console.WriteLine("---------------------------------------------------------");
+            Console.WriteLine("---------------------------------------------------------");
+            Console.WriteLine("---------------------------------------------------------");
+
 
         }
 

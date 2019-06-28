@@ -31,10 +31,9 @@ namespace mattstates.Controllers
 
         public TwitterController(IHttpClientFactory clientFactory, IOptions<TwitterConfig> config)
         {
-            _clientFactory = clientFactory;
-
             _accessToken = config.Value.AccessToken;
             _accessTokenSecret = config.Value.AccessSecret;
+            _clientFactory = clientFactory;
             _consumerKey = config.Value.Api;
             _consumerKeySecret = config.Value.ApiSecret;
         }
