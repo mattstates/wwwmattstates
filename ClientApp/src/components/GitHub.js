@@ -43,7 +43,14 @@ export class GitHub extends Component {
         return (
             <Col xs={12}>
                 <h4 className="text-center">GitHub</h4>
-                <ListGroup>{this.state.githubData.map(formatGitHubEvent)}</ListGroup>
+                {this.state.githubData.length ? (
+                    <ListGroup>{this.state.githubData.map(formatGitHubEvent)}</ListGroup>
+                ) : (
+                    <div>
+                        If you are seeing this, I guess it has been a while since my last git
+                        push/pull to a public repo.
+                    </div>
+                )}
             </Col>
         );
     }
