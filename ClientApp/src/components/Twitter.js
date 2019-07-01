@@ -1,30 +1,35 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import './Twitter.css';
 
-const tweetId = 'id_str';
-let twitterLoaded = false;
+function loadTwitter() {
+    const scriptTags = document.getElementsByTagName('script')[0];
+    const id = 'twitter-wjs';
 
-function loadTwitter(twitterLoaded) {
-    if (twitterLoaded) return;
+    if (document.getElementById(id)) return;
 
-    window.twttr = (function(d, tag, id) {
-        var js,
-            fjs = d.getElementsByTagName(tag)[0],
-            t = window.twttr || {};
-        if (d.getElementById(id)) return t;
-        js = d.createElement(tag);
-        js.id = id;
-        js.src = 'https://platform.twitter.com/widgets.js';
-        fjs.parentNode.insertBefore(js, fjs);
+    const jsScriptTag = document.createElement('script');
 
-        t._e = [];
-        t.ready = function(f) {
-            t._e.push(f);
+    jsScriptTag.id = id;
+    jsScriptTag.src = 'https://platform.twitter.com/widgets.js';
+
+    return new Promise((resolve, reject) => {
+        jsScriptTag.onload = function() {
+            const twttr = window.twttr || {};
+            twttr._e = [];
+
+            twttr.ready = function(f) {
+                twttr._e.push(f);
+            };
+            resolve(true);
         };
-        twitterLoaded = true;
-        return t;
-    })(document, 'script', 'twitter-wjs');
+
+        jsScriptTag.onerror = function(message) {
+            reject(message);
+        };
+
+        scriptTags.parentNode.insertBefore(jsScriptTag, scriptTags);
+    });
 }
 
 function createTweet(tweetId, elementId) {
@@ -35,58 +40,66 @@ function createTweet(tweetId, elementId) {
     });
 }
 
-export class Twitter extends Component {
-    constructor(props) {
-        super(props);
-        loadTwitter(twitterLoaded);
+function Twitter() {
+    const [twitterClientScriptIsLoaded, updateTwitterClientScriptIsLoaded] = useState(false);
+    const [twitterDataIsLoaded, updateTwitterDataIsLoaded] = useState(false);
+    const [twitterData, updateTwitterData] = useState([]);
 
-        this.state = {
-            twitterData: [],
-            loaded: false
-        };
-    }
+    useEffect(() => {
+        loadTwitter()
+            .then(isLoaded => {
+                updateTwitterClientScriptIsLoaded(isLoaded);
+            })
+            .catch(message => {
+                console.error(message);
+                updateTwitterClientScriptIsLoaded(false)
+            });
+    }, []);
 
-    componentDidMount() {
-        if (this.state.loaded) return;
-        fetch('/api/twitter/tweets')
-            .then(response => response.json())
-            .then(twitterData => this.setState({ twitterData, loaded: true }))
-            .catch(err => console.error(err.message));
-    }
+    useEffect(
+        () => {
+            if (!twitterClientScriptIsLoaded || twitterDataIsLoaded) return;
 
-    render() {
-        return (
-            <Row>
-                <div id="tweets">
-                    {this.state.loaded ? <h4 className='text-center'>Twitter</h4> : ''}
-                    {this.state.loaded
-                        ? this.state.twitterData.map((tweet, index) => {
-                              return (
-                                  <Col xs={12} sm={6} md={4} key={`tweet${tweet.id_str}${index}`}>
-                                      <Tweet
-                                          tweetId={tweet.id_str}
-                                          elementId={`tweet${tweet.id_str}`}
-                                      />
-                                  </Col>
-                              );
-                          })
-                        : '...loading'}
-                </div>
-            </Row>
-        );
-    }
+            fetch('/api/twitter/tweets')
+                .then(response => response.json())
+                .then(data => {
+                    updateTwitterData(data);
+                    updateTwitterDataIsLoaded(true);
+                })
+                .catch(err => console.error(err.message));
+        },
+        [twitterClientScriptIsLoaded]
+    );
+
+    return (
+        <Row>
+            <div id="tweets">
+                {twitterDataIsLoaded ? <h4 className="text-center">Twitter</h4> : ''}
+                {twitterDataIsLoaded
+                    ? twitterData.map((tweet, index) => {
+                          return (
+                              <Col xs={12} sm={6} md={4} key={`tweet${tweet.id_str}${index}`}>
+                                  <Tweet
+                                      tweetId={tweet.id_str}
+                                      elementId={`tweet${tweet.id_str}`}
+                                  />
+                              </Col>
+                          );
+                      })
+                    : '...loading'}
+            </div>
+        </Row>
+    );
 }
 
-class Tweet extends Component {
-    constructor(props) {
-        super(props);
-    }
-
-    componentDidMount() {
-        createTweet(this.props.tweetId, this.props.elementId);
-    }
-
-    render() {
-        return <div className="tweet" id={this.props.elementId} />;
-    }
+function Tweet({ tweetId, elementId }) {
+    useEffect(
+        () => {
+            createTweet(tweetId, elementId);
+        },
+        [elementId]
+    );
+    return <div className="tweet" id={elementId} />;
 }
+
+export default Twitter;

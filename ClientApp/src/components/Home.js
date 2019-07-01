@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Glyphicon, Grid, Row, Col, Clearfix, Panel, Image, Table } from 'react-bootstrap';
 import './Home.css';
 import { GitHub } from './GitHub';
-import { Twitter } from './Twitter';
+import Twitter from './Twitter.js';
 
 export class Home extends Component {
     displayName = Home.name;
