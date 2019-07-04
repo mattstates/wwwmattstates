@@ -27,7 +27,7 @@ services:
   mattstates:
     depends_on:
       - dotnetruntime
-    image: mattstates:latest
+    image: mstates/mattstates:latest
     environment:
       - USER_SECRETS_ID=65015713-1466-415e-8bdd-aa3c1034d755
     ports:
