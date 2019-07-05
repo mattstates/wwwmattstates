@@ -123,7 +123,7 @@ export class Home extends Component {
                                 <tr>
                                     <td>Email</td>
                                     <td>
-                                        <a href="mailto:mstates@icloud.com">mstates@icloud.com</a>
+                                        <a href="mailto:mstatesdev@gmail.com">mstatesdev@gmail.com</a>
                                     </td>
                                 </tr>
                                 <tr>
