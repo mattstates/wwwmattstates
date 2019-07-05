@@ -1,6 +1,6 @@
 # My Ignored Files
 /ClientApp/src/ignore/
-
+.vscode
 /Properties/launchSettings.json
 
 ## Ignore Visual Studio temporary files, build results, and

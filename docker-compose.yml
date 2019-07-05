@@ -1,36 +1,36 @@
-version: "3"
+version: '3'
 
 volumes:
-  secrets:
-    external: true
+    secrets:
+        external: true
 
 services:
-  reverseproxy:
-    image: mstates/reverseproxy
-    ports:
-      - 8080:8080
-    restart: always
+    reverseproxy:
+        image: mstates/reverseproxy
+        ports:
+            - 8080:8080
+        restart: always
 
-  nginx:
-    image: nginx
-    depends_on:
-      - reverseproxy
+    nginx:
+        image: nginx
+        depends_on:
+            - reverseproxy
 
-  dotnetruntime:
-    depends_on:
-      - dotnetsdk
-    image: microsoft/dotnet:2.1-aspnetcore-runtime
+    dotnetsdk:
+        image: microsoft/dotnet:2.1-sdk
 
-  dotnetsdk:
-    image: microsoft/dotnet:2.1-sdk
+    dotnetruntime:
+        depends_on:
+            - dotnetsdk
+        image: microsoft/dotnet:2.1-aspnetcore-runtime
 
-  mattstates:
-    depends_on:
-      - dotnetruntime
-    image: mstates/mattstates:latest
-    environment:
-      - USER_SECRETS_ID=65015713-1466-415e-8bdd-aa3c1034d755
-    ports:
-      - 80
-    volumes:
-      - secrets:/root/.microsoft/usersecrets/65015713-1466-415e-8bdd-aa3c1034d755
+    mattstates:
+        depends_on:
+            - dotnetruntime
+        image: mstates/mattstates:latest
+        environment:
+            - USER_SECRETS_ID=65015713-1466-415e-8bdd-aa3c1034d755
+        ports:
+            - 80
+        volumes:
+            - secrets:/root/.microsoft/usersecrets/65015713-1466-415e-8bdd-aa3c1034d755
