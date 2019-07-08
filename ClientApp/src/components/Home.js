@@ -170,8 +170,8 @@ export function Home() {
                         this site allows me to experiment with C#, Docker, Linux, and eventually a
                         host of other tech that strikes my interest.
                     </p>
-                    <a href="https://github.com/mattstates/wwwmattstates" target="_new">
-                        https://github.com/mattstates/wwwmattstates
+                    <a href="https://github.com/mattstates/mattstates.com" target="_new">
+                    https://github.com/mattstates/mattstates.com
                     </a>
                     <p>Thanks for visiting.</p>
                 </Row>
