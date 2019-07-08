@@ -1,19 +1,21 @@
-# WWWMattStates
+# mattstates.com
 
 This repo houses the code for my personal website. The content on this site will give an overview of my professional experience as a web developer.
 
+[mattstates.com](http://www.mattstates.com)
+
 ## Technology Overview
 
-### Front End
+#### Front End
 - React
-- WebPack
-### Back End
+- Webpack
+#### Back End
 - .NetCore
-### Deployment
+#### Deployment
 - Linux Hosting (Ubuntu / Nginx)
 - Docker
 
-## Roadmap
+#### *Roadmap*
 - SSL
 - Blog
 - Automated Deployment
