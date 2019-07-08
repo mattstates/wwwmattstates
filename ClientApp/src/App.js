@@ -1,20 +1,12 @@
-import React, { Component } from 'react';
-import { About } from './components/About';
-import { Contact } from './components/Contact';
+import React from 'react';
 import { Home } from './components/Home';
 import { Layout } from './components/Layout';
 import { Route } from 'react-router';
 
-export default class App extends Component {
-  displayName = App.name
-
-  render() {
+export default function App() {
     return (
-      <Layout>
-        <Route exact path='/' component={Home} />
-        <Route path='/about' component={About} />
-        <Route path='/contact' component={Contact} />
-      </Layout>
+        <Layout>
+            <Route exact path="/" component={Home} />
+        </Layout>
     );
-  }
 }

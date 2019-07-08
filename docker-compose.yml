@@ -7,7 +7,6 @@ volumes:
 services:
     reverseproxy:
         image: mstates/reverseproxy
-        # image: reverseproxy
         ports:
             - 80:80
         restart: always
@@ -34,4 +33,5 @@ services:
         ports:
             - 80
         volumes:
+            # "run docker volume inspect" to find the mount point to create the .json file.
             - secrets:/root/.microsoft/usersecrets/65015713-1466-415e-8bdd-aa3c1034d755

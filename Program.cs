@@ -1,12 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
 
 namespace mattstates
 {
@@ -21,8 +15,7 @@ namespace mattstates
             WebHost.CreateDefaultBuilder(args)
                 .ConfigureAppConfiguration((hostingContext, config) =>
                 {
-                    // config.SetBasePath(Directory.GetDirectoryRoot("Users/mattstates"));
-                    config.AddJsonFile("/root/.microsoft/usersecrets/65015713-1466-415e-8bdd-aa3c1034d755/secrets.json", optional: true, reloadOnChange: false);
+                    config.AddJsonFile("/root/.microsoft/usersecrets/65015713-1466-415e-8bdd-aa3c1034d755/secrets.json", optional: true, reloadOnChange: true);
                 })
                 .UseStartup<Startup>();
     }

@@ -10,13 +10,11 @@ This repo houses the code for my personal website. The content on this site will
 ### Back End
 - .NetCore
 ### Deployment
-- Linux Hosting
+- Linux Hosting (Ubuntu / Nginx)
 - Docker
-- SSL
 
 ## Roadmap
-- Database
+- SSL
 - Blog
-- SSR with .NetCore
 - Automated Deployment
 - Automated Tests

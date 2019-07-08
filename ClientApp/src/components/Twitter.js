@@ -34,7 +34,6 @@ function loadTwitter() {
 
 function createTweet(tweetId, elementId) {
     window.twttr.widgets.createTweet(tweetId, document.getElementById(elementId), {
-        // conversation: 'none',
         dnt: true,
         linkColor: '#55acee'
     });
@@ -52,7 +51,7 @@ function Twitter() {
             })
             .catch(message => {
                 console.error(message);
-                updateTwitterClientScriptIsLoaded(false)
+                updateTwitterClientScriptIsLoaded(false);
             });
     }, []);
 

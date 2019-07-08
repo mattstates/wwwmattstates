@@ -32,22 +32,6 @@ RUN curl -SL "https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-lin
     && ln -s /usr/local/bin/node /usr/local/bin/nodejs
 
 EXPOSE 5000
-#:80
-# ENV USER_SECRETS_ID 65015713-1466-415e-8bdd-aa3c1034d755
-# ENV HOME_PATH /Users/mattstates
-# ENV PATH ~/.microsoft/usersecrets/65015713-1466-415e-8bdd-aa3c1034d755
-
-# RUN echo "~/.microsoft/usersecrets/${USER_SECRETS_ID}:~/.microsoft/usersecrets/${USER_SECRETS_ID}"
-
-# VOLUME [ "/Users/mattstates/.microsoft/usersecrets/${USER_SECRETS_ID}:/app/.microsoft/usersecrets/${USER_SECRETS_ID}" ]
-# VOLUME /Users/mattstates/.microsoft/usersecrets/${USER_SECRETS_ID} /app/.microsoft/usersecrets/${USER_SECRETS_ID}
-# VOLUME secrets /root/.microsoft/usersecrets/65015713-1466-415e-8bdd-aa3c1034d755
-
 
 COPY --from=build-env /app/out .
 ENTRYPOINT ["dotnet", "mattstates.dll"]
-
-# docker run --name test1 -v /Users/mattstates/.microsoft/usersecrets/65015713-1466-415e-8bdd-aa3c1034d755:/root/.microsoft/usersecrets/65015713-1466-415e-8bdd-aa3c1034d755 mattstates:latest -p 3000:80
-# docker run --name test1 -v /Users/mattstates/.microsoft/usersecrets/65015713-1466-415e-8bdd-aa3c1034d755:/app/.microsoft/usersecrets/65015713-1466-415e-8bdd-aa3c1034d755 mattstates:latest -p 3000:80
-# docker run --name test1 -v secrets:/root/.microsoft/usersecrets/65015713-1466-415e-8bdd-aa3c1034d755 mattstates:latest -p 3000:80
-# docker run --name test1 -v secrets:/root/.microsoft/usersecrets/65015713-1466-415e-8bdd-aa3c1034d755 -v secrets:/root/.microsoft/usersecrets/65015713-1466-415e-8bdd-aa3c1034d755 mattstates:latest -p 3000:80
