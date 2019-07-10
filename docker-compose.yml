@@ -9,6 +9,7 @@ services:
         image: mstates/reverseproxy
         ports:
             - 80:80
+            - 443:443
         restart: always
 
     nginx:
@@ -32,6 +33,7 @@ services:
             - USER_SECRETS_ID=65015713-1466-415e-8bdd-aa3c1034d755
         ports:
             - 80
+            - 443
         volumes:
             # "run docker volume inspect" to find the mount point to create the .json file.
             - secrets:/root/.microsoft/usersecrets/65015713-1466-415e-8bdd-aa3c1034d755
