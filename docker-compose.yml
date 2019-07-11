@@ -6,6 +6,8 @@ volumes:
 
 services:
     # https://medium.com/@pentacent/nginx-and-lets-encrypt-with-docker-in-less-than-5-minutes-b4b8a60d3a71
+    # Follow the instructions in the article, but I think the whole services stack should be running before executing the init-letsencrypt.sh program.
+
     nginx:
         image: nginx:1.15-alpine
         ports:
