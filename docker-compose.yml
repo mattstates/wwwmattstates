@@ -10,6 +10,8 @@ services:
         ports:
             - 80:80
             - 443:443
+        volumes:
+            - /etc/letsencrypt/key:/etc/nginx/certs
         restart: always
 
     nginx:
