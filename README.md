@@ -14,9 +14,9 @@ This repo houses the code for my personal website. The content on this site will
 #### Deployment
 - Linux Hosting (Ubuntu / Nginx)
 - Docker
+- Lets Encrypt SSL
 
 #### *Roadmap*
-- SSL
 - Blog
 - Automated Deployment
 - Automated Tests
