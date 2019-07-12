@@ -37,13 +37,6 @@ namespace mattstates
 
             services.Configure<TwitterConfig>(Configuration.GetSection("TwitterApi"));
 
-            Console.WriteLine("---------------------------TWITTER ACCESS TOKEN----------");
-            Console.WriteLine(Configuration.GetSection("TwitterApi:AccessToken").Value);
-            Console.WriteLine("---------------------------------------------------------");
-            Console.WriteLine("---------------------------------------------------------");
-            Console.WriteLine("---------------------------------------------------------");
-
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

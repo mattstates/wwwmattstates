@@ -1,8 +1,9 @@
-import React from 'react';
-import { Glyphicon, Grid, Row, Col, Clearfix, Panel, Image, Table } from 'react-bootstrap';
 import './Home.css';
-import { GitHub } from './GitHub';
+import React from 'react';
 import Twitter from './Twitter.js';
+import { EMAIL_ADDRESS } from '../constants/index.js';
+import { GitHub } from './GitHub';
+import { Glyphicon, Grid, Row, Col, Clearfix, Panel, Image, Table } from 'react-bootstrap';
 
 export function Home() {
     return (
@@ -17,7 +18,7 @@ export function Home() {
             <Grid>
                 <Row>
                     <div className="pitch">
-                        <Image src="/images/matt-lampsplus.jpg" rounded responsive />
+                        <Image src="/images/matt-lampsplus.jpg" rounded responsive alt="Matt States" />
                         <div>
                             <p>
                                 I am currently a web development manager at{' '}
@@ -119,7 +120,7 @@ export function Home() {
                             <tr>
                                 <td>Email</td>
                                 <td>
-                                    <a href="mailto:mstatesdev@gmail.com">mstatesdev@gmail.com</a>
+                                    <a href={`mailto:${EMAIL_ADDRESS}`}>{EMAIL_ADDRESS}</a>
                                 </td>
                             </tr>
                             <tr>
@@ -163,7 +164,7 @@ export function Home() {
                     </h2>
                     <p>
                         This page is still a work in progress. It serves the purpose of telling
-                        people a little bit about me, but also serves as a code playground.
+                        people a little bit about me, but also serves as a code testing area.
                     </p>
                     <p>
                         While most of my programming knowledge lies in the javascript ecosystem,

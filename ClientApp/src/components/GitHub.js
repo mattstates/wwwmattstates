@@ -71,7 +71,7 @@ function formatGitHubEvent(event) {
                     href={repo.url}
                     header={`${new Date(created_at).toDateString()} - ${repo.name}`}
                 >
-                    <Image rounded src={actor.avatar_url} />
+                    <Image rounded src={actor.avatar_url} alt="GitHub Profile - Matt States" />
                     Git Push - {commits[0].sha.substr(0, 15)}
                     ... "{commits[0].message}" {actor.login}
                 </ListGroupItem>
