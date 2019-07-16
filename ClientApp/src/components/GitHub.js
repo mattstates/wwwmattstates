@@ -1,59 +1,58 @@
-import React, { Component } from 'react';
-import { Col, Image, ListGroup, ListGroupItem } from 'react-bootstrap';
 import './GitHub.css';
+import React, { useEffect, useState } from 'react';
+import { Col, Image, ListGroup, ListGroupItem } from 'react-bootstrap';
 
 const pushEventCount = 4;
 const pullRequestCount = 3;
 const EVENT_TYPES = {
-    push: 'pushevent',
-    pullrequest: 'pullrequestevent'
+    gitPush: 'pushevent',
+    gitPullRequest: 'pullrequestevent'
 };
 
-export class GitHub extends Component {
-    constructor() {
-        super();
-        this.state = {
-            githubData: [],
-            loaded: false
-        };
-    }
+export function GitHub() {
+    const [githubData, updateGithubData] = useState([]);
+    const [isLoaded, updateIsLoaded] = useState(false);
 
-    componentDidMount() {
-        if (this.state.loaded) return;
-        fetch('/api/github/githubevents')
+    useEffect(() => {
+        const abortController = new AbortController();
+        const signal = abortController.signal;
+
+        fetch('/api/github/githubevents', { signal })
             .then(response => response.json())
-            .then(githubData => {
+            .then(responseJson => {
                 const prunedEvents = [
-                    ...githubData
-                        .filter(event => event.type.toLowerCase() === EVENT_TYPES.push)
+                    ...responseJson
+                        .filter(event => event.type.toLowerCase() === EVENT_TYPES.gitPush)
                         .splice(0, pushEventCount),
-                    ...githubData
-                        .filter(event => event.type.toLowerCase() === EVENT_TYPES.pullrequest)
+                    ...responseJson
+                        .filter(event => event.type.toLowerCase() === EVENT_TYPES.gitPullRequest)
                         .splice(0, pullRequestCount)
                 ].sort((a, b) => b.id - a.id);
 
-                this.setState({ githubData: prunedEvents, loaded: true });
+                updateGithubData(prunedEvents);
+                updateIsLoaded(true);
             })
             .catch(err => console.error(err.message));
-    }
+        return () => {
+            abortController.abort();
+        };
+    }, []);
 
-    render() {
-        if (!this.state.loaded) return <div />;
+    if (!isLoaded) return <div />;
 
-        return (
-            <Col xs={12}>
-                <h4 className="text-center">GitHub</h4>
-                {this.state.githubData.length ? (
-                    <ListGroup>{this.state.githubData.map(formatGitHubEvent)}</ListGroup>
-                ) : (
-                    <div>
-                        If you are seeing this, I guess it has been a while since my last git
-                        push/pull to a public repo.
-                    </div>
-                )}
-            </Col>
-        );
-    }
+    return (
+        <Col xs={12}>
+            <h4 className="text-center">GitHub</h4>
+            {githubData.length ? (
+                <ListGroup>{githubData.map(formatGitHubEvent)}</ListGroup>
+            ) : (
+                <div>
+                    If you are seeing this, I guess it has been a while since my last git push/pull
+                    to a public repo.
+                </div>
+            )}
+        </Col>
+    );
 }
 
 function formatGitHubEvent(event) {
@@ -63,7 +62,7 @@ function formatGitHubEvent(event) {
     const { commits } = payload;
 
     switch (eventType) {
-        case EVENT_TYPES.push:
+        case EVENT_TYPES.gitPush:
             return (
                 <ListGroupItem
                     key={event.id}
@@ -76,7 +75,7 @@ function formatGitHubEvent(event) {
                     ... "{commits[0].message}" {actor.login}
                 </ListGroupItem>
             );
-        case EVENT_TYPES.pullrequest:
+        case EVENT_TYPES.gitPullRequest:
             return (
                 <ListGroupItem
                     key={event.id}

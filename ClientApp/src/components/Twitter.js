@@ -58,14 +58,20 @@ function Twitter() {
     useEffect(
         () => {
             if (!twitterClientScriptIsLoaded || twitterDataIsLoaded) return;
+            const abortController = new AbortController();
+            const signal = abortController.signal;
 
-            fetch('/api/twitter/tweets')
+            fetch('/api/twitter/tweets', { signal })
                 .then(response => response.json())
                 .then(data => {
                     updateTwitterData(data);
                     updateTwitterDataIsLoaded(true);
                 })
                 .catch(err => console.error(err.message));
+
+            return () => {
+                abortController.abort();
+            };
         },
         [twitterClientScriptIsLoaded]
     );

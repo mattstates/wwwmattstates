@@ -1,7 +1,7 @@
-import React from 'react';
-import { Grid, Row } from 'react-bootstrap';
-import { Footer } from './Footer';
 import './Layout.css';
+import React from 'react';
+import { Footer } from './Footer';
+import { Grid, Row } from 'react-bootstrap';
 
 export function Layout({ children }) {
     return (
