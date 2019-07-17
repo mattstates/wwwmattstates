@@ -205,7 +205,7 @@ const technologies = {
     },
     'Misc.': {
         'Version Control': ['Git', 'Perforce', 'ESLint', 'Prettier'],
-        Hosting: ['Linux (Ubuntu)', 'Heroku', 'Digital Ocean', 'WordPress'],
+        Hosting: ['Linux (Ubuntu)', 'Heroku', 'Digital Ocean', 'Docker', 'WordPress'],
         IDE: ['Visual Studio', 'SQL Server Management Studio', 'Visual Studio Code']
     }
 };
