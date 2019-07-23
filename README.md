@@ -17,6 +17,7 @@ This repo houses the code for my personal website. The content on this site will
 - Lets Encrypt SSL
 
 #### *Roadmap*
+- Resume / PDF Download
 - Blog
 - Automated Deployment
 - Automated Tests
