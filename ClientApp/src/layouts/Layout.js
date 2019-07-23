@@ -1,6 +1,6 @@
 import './Layout.css';
 import React from 'react';
-import { Footer } from './Footer';
+import { Footer } from '../components/Footer';
 import { Grid, Row } from 'react-bootstrap';
 
 export function Layout({ children }) {

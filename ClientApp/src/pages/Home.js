@@ -1,8 +1,8 @@
 import './Home.css';
 import React from 'react';
-import Twitter from './Twitter.js';
+import Twitter from '../components/Twitter.js';
 import { EMAIL_ADDRESS } from '../constants/index.js';
-import { GitHub } from './GitHub';
+import { GitHub } from '../components/GitHub';
 import { Glyphicon, Grid, Row, Col, Clearfix, Panel, Image, Table } from 'react-bootstrap';
 
 export function Home() {
